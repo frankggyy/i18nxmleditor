@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="I18n XML Editor"
+            extensions="xml"
+            icon="icons/sample.gif"
+            contributorClass="com.whnec.tool.eclipse.plugin.i18nxmleditor.editors.I18nXmlEditorContributor"
+            class="com.whnec.tool.eclipse.plugin.i18nxmleditor.editors.I18nXmlEditor"
+            id="com.whnec.tool.eclipse.plugin.i18nxmleditor.editors.I18nXmlEditor">
+      </editor>
+   </extension>
+
+</plugin>
