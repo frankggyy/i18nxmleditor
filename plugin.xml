@@ -5,12 +5,13 @@
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            name="I18n XML Editor"
+            class="com.whnec.tool.eclipse.plugin.i18nxmleditor.I18nXmlEditor"
+            contributorClass="com.whnec.tool.eclipse.plugin.i18nxmleditor.I18nXmlEditorContributor"
             extensions="xml"
             icon="icons/sample.gif"
-            contributorClass="com.whnec.tool.eclipse.plugin.i18nxmleditor.editors.I18nXmlEditorContributor"
-            class="com.whnec.tool.eclipse.plugin.i18nxmleditor.editors.I18nXmlEditor"
-            id="com.whnec.tool.eclipse.plugin.i18nxmleditor.editors.I18nXmlEditor">
+            id="com.whnec.tool.eclipse.plugin.i18nxmleditor.editors.I18nXmlEditor"
+            matchingStrategy="com.whnec.tool.eclipse.plugin.i18nxmleditor.I18nXmlEditorMatcher"
+            name="I18n XML Editor">
       </editor>
    </extension>
 

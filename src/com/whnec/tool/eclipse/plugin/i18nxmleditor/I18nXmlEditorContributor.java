@@ -1,4 +1,4 @@
-package com.whnec.tool.eclipse.plugin.i18nxmleditor.editors;
+package com.whnec.tool.eclipse.plugin.i18nxmleditor;
 
 import org.eclipse.jface.action.*;
 import org.eclipse.jface.dialogs.MessageDialog;
