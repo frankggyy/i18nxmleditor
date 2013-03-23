@@ -1,0 +1,18 @@
+<project name="i18nxmleditor" default="jibx-bind" basedir=".">
+    <property name="jibx-lib" value="${basedir}/lib" />
+
+    <taskdef name="bind" classname="org.jibx.binding.ant.CompileTask">
+        <classpath>
+            <fileset dir="${jibx-lib}" includes="*.jar" />
+        </classpath>
+    </taskdef>
+
+    <target name="jibx-bind">
+        <bind verbose="true" load="true" binding="${basedir}/conf/binding.xml">
+            <classpath>
+                <pathelement path="${basedir}/bin" />
+                <pathelement location="${jibx-lib}/jibx-run.jar" />
+            </classpath>
+        </bind>
+    </target>
+</project>
