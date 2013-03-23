@@ -11,6 +11,8 @@ import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
@@ -24,6 +26,11 @@ import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.ide.ResourceUtil;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.MultiPageEditorPart;
+import org.jibx.runtime.JiBXException;
+
+import com.whnec.i18n.I18nItem;
+import com.whnec.i18n.I18nResource;
+import com.whnec.i18n.I18nXmlInterpreter;
 
 /**
  * An example showing how to create a multi-page editor. This example has 3
@@ -98,6 +105,20 @@ public class I18nXmlEditor extends MultiPageEditorPart implements IResourceChang
         }
     }
 
+    void createI18nEditor() {
+        IFile file = ResourceUtil.getFile(getEditorInput());
+        try {
+            I18nResource resource = I18nXmlInterpreter.getInstance().unmarshal(file.getContents(), "gbk");
+            if (null != resource)
+                for (I18nItem item : resource.getItems())
+                    System.out.println(item.getName());
+        } catch (JiBXException | CoreException e) {
+            ErrorDialog.openError(getSite().getShell(), "Unmarshall Error", "Exception on unmarshall i18n xml file: "
+                    + file.getName(),
+                    new Status(IStatus.ERROR, I18nXmlEditorActivator.PLUGIN_ID, Status.ERROR, e.getMessage(), e));
+        }
+    }
+
     /**
      * Creates page 0 of the multi-page editor, which contains a text editor.
      */
@@ -161,6 +182,7 @@ public class I18nXmlEditor extends MultiPageEditorPart implements IResourceChang
         // createPage1();
         // createPage2();
         createTextEditors();
+        createI18nEditor();
     }
 
     /**
@@ -186,10 +208,10 @@ public class I18nXmlEditor extends MultiPageEditorPart implements IResourceChang
      * correspond to the nested editor's.
      */
     public void doSaveAs() {
-//        IEditorPart editor = getEditor(0);
-//        editor.doSaveAs();
-//        setPageText(0, editor.getTitle());
-//        setInput(editor.getEditorInput());
+        // IEditorPart editor = getEditor(0);
+        // editor.doSaveAs();
+        // setPageText(0, editor.getTitle());
+        // setInput(editor.getEditorInput());
     }
 
     /*

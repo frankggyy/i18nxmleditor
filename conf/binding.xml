@@ -1,2 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<binding name="resource"
+<binding>
+	<mapping name="resource-file-table" class="com.whnec.i18n.I18nResource">
+		<collection field="items" factory="com.whnec.i18n.I18nResource.collectionFactory"/>
+	</mapping>
+	<mapping name="resource-property" class="com.whnec.i18n.I18nItem">
+	   <value name="id" field="id" usage="optional"/>
+       <value name="code" field="code"/>
+       <value name="name" field="name"/>
+	</mapping>
+</binding>

@@ -8,7 +8,6 @@
             class="com.whnec.tool.eclipse.plugin.i18nxmleditor.I18nXmlEditor"
             contributorClass="com.whnec.tool.eclipse.plugin.i18nxmleditor.I18nXmlEditorContributor"
             extensions="xml"
-            icon="icons/sample.gif"
             id="com.whnec.tool.eclipse.plugin.i18nxmleditor.editors.I18nXmlEditor"
             matchingStrategy="com.whnec.tool.eclipse.plugin.i18nxmleditor.I18nXmlEditorMatcher"
             name="I18n XML Editor">
