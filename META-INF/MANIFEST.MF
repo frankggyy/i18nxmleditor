@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: I18n XML Editor
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: com.whnec.tool.editor.I18nXmlEditor; singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.whnec.tool.eclipse.plugin.i18nxmleditor.I18nXmlEditorActivator
-Bundle-Vendor: wanghu@whnec.com.cn
+Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.jface.text,

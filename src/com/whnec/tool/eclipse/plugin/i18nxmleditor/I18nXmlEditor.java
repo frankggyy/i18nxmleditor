@@ -112,10 +112,13 @@ public class I18nXmlEditor extends MultiPageEditorPart implements IResourceChang
             if (null != resource)
                 for (I18nItem item : resource.getItems())
                     System.out.println(item.getName());
-        } catch (JiBXException | CoreException e) {
+        } catch (JiBXException e) {
             ErrorDialog.openError(getSite().getShell(), "Unmarshall Error", "Exception on unmarshall i18n xml file: "
                     + file.getName(),
                     new Status(IStatus.ERROR, I18nXmlEditorActivator.PLUGIN_ID, Status.ERROR, e.getMessage(), e));
+        } catch (CoreException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     }
 
