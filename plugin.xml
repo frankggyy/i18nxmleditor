@@ -29,5 +29,14 @@
             priority="high">
       </content-type>
    </extension>
+   <extension
+         point="org.eclipse.ui.services">
+      <serviceFactory
+            factoryClass="com.whnec.tool.eclipse.plugin.i18nxmleditor.service.I18nXmlInterpreterServiceFactory">
+         <service
+               serviceClass="com.whnec.tool.eclipse.plugin.i18nxmleditor.service.I18nXmlInterpreterService">
+         </service>
+      </serviceFactory>
+   </extension>
 
 </plugin>

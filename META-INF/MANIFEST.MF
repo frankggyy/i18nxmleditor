@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: com.whnec.tool.editor.I18nXmlEditor; singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: com.whnec.tool.eclipse.plugin.i18nxmleditor.I18nXmlEditorActivator
+Bundle-Activator: com.whnec.tool.eclipse.plugin.i18nxmleditor.I18nXmlEditorPlugin
 Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -14,5 +14,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.forms
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: lib/jibx-run.jar
+Bundle-ClassPath: lib/jibx-run.jar,
+ .
 Bundle-Localization: plugin

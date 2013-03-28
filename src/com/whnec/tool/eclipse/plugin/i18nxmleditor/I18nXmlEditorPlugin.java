@@ -7,18 +7,18 @@ import org.osgi.framework.BundleContext;
 /**
  * The activator class controls the plug-in life cycle
  */
-public class I18nXmlEditorActivator extends AbstractUIPlugin {
+public class I18nXmlEditorPlugin extends AbstractUIPlugin {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "com.whnec.tool.editor.I18nXmlEditor"; //$NON-NLS-1$
 
 	// The shared instance
-	private static I18nXmlEditorActivator plugin;
+	private static I18nXmlEditorPlugin plugin;
 	
 	/**
 	 * The constructor
 	 */
-	public I18nXmlEditorActivator() {
+	public I18nXmlEditorPlugin() {
 	}
 
 	/*
@@ -44,7 +44,7 @@ public class I18nXmlEditorActivator extends AbstractUIPlugin {
 	 *
 	 * @return the shared instance
 	 */
-	public static I18nXmlEditorActivator getDefault() {
+	public static I18nXmlEditorPlugin getDefault() {
 		return plugin;
 	}
 

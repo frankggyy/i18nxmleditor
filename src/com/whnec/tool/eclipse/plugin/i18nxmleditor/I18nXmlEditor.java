@@ -22,15 +22,15 @@ import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.editors.text.TextEditor;
+import org.eclipse.ui.forms.editor.FormEditor;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.ide.ResourceUtil;
 import org.eclipse.ui.part.FileEditorInput;
-import org.eclipse.ui.part.MultiPageEditorPart;
-import org.jibx.runtime.JiBXException;
 
 import com.whnec.i18n.I18nItem;
 import com.whnec.i18n.I18nResource;
-import com.whnec.i18n.I18nXmlInterpreter;
+import com.whnec.tool.eclipse.plugin.i18nxmleditor.service.I18nXmlInterpreterService;
+import com.whnec.tool.eclipse.plugin.i18nxmleditor.service.InterpretException;
 
 /**
  * An example showing how to create a multi-page editor. This example has 3
@@ -41,7 +41,7 @@ import com.whnec.i18n.I18nXmlInterpreter;
  * <li>page 2 shows the words in page 0 in sorted order
  * </ul>
  */
-public class I18nXmlEditor extends MultiPageEditorPart implements IResourceChangeListener {
+public class I18nXmlEditor extends FormEditor implements IResourceChangeListener {
 
     /** Regexp for i18n xml file name */
     public static final Pattern PATTERN_FILENAME = Pattern.compile("^resource_?[a-zA-Z]{0,2}\\.xml$");
@@ -108,17 +108,20 @@ public class I18nXmlEditor extends MultiPageEditorPart implements IResourceChang
     void createI18nEditor() {
         IFile file = ResourceUtil.getFile(getEditorInput());
         try {
-            I18nResource resource = I18nXmlInterpreter.getInstance().unmarshal(file.getContents(), "gbk");
+            I18nXmlInterpreterService interpreter = (I18nXmlInterpreterService) getSite().getService(
+                    I18nXmlInterpreterService.class);
+            I18nResource resource = interpreter.unmarshal(file.getContents(), "gbk");
             if (null != resource)
                 for (I18nItem item : resource.getItems())
                     System.out.println(item.getName());
-        } catch (JiBXException e) {
+        } catch (InterpretException e) {
             ErrorDialog.openError(getSite().getShell(), "Unmarshall Error", "Exception on unmarshall i18n xml file: "
                     + file.getName(),
-                    new Status(IStatus.ERROR, I18nXmlEditorActivator.PLUGIN_ID, Status.ERROR, e.getMessage(), e));
+                    new Status(IStatus.ERROR, I18nXmlEditorPlugin.PLUGIN_ID, Status.ERROR, e.getMessage(), e));
         } catch (CoreException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            ErrorDialog.openError(getSite().getShell(), "Resource Error",
+                    "Exception on reading file: " + file.getName(), new Status(IStatus.ERROR,
+                            I18nXmlEditorPlugin.PLUGIN_ID, Status.ERROR, e.getMessage(), e));
         }
     }
 
@@ -271,6 +274,12 @@ public class I18nXmlEditor extends MultiPageEditorPart implements IResourceChang
                 }
             });
         }
+    }
+
+    protected void addPages() {
+        // TODO Auto-generated method stub
+        
+
     }
 
     /**
