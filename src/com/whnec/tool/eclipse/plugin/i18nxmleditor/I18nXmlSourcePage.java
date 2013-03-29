@@ -20,8 +20,6 @@ public class I18nXmlSourcePage extends TextEditor implements IFormPage {
 
     private int fIndex;
 
-    private Control fControl;
-
     /*
      * (non-Javadoc)
      * 
@@ -92,7 +90,7 @@ public class I18nXmlSourcePage extends TextEditor implements IFormPage {
      */
     @Override
     public Control getPartControl() {
-        return fControl;
+        return null;
     }
 
     /*
@@ -142,7 +140,6 @@ public class I18nXmlSourcePage extends TextEditor implements IFormPage {
      */
     @Override
     public boolean selectReveal(Object object) {
-        // TODO Auto-generated method stub
         return false;
     }
 
@@ -155,9 +152,7 @@ public class I18nXmlSourcePage extends TextEditor implements IFormPage {
      */
     @Override
     public void createPartControl(Composite parent) {
-        super.createPartControl(parent);
-        Control[] children = parent.getChildren();
-        fControl = children[children.length - 1];
+        // no need;
     }
 
 }

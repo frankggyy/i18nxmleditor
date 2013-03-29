@@ -46,7 +46,7 @@ public class I18nXmlEditor extends FormEditor implements IResourceChangeListener
     /** Regexp for i18n xml file name */
     public static final Pattern PATTERN_FILENAME = Pattern.compile("^resource_?[a-zA-Z]{0,2}\\.xml$");
     /** The editors for all i18n xml file */
-    private HashMap<String, TextEditor> textEditors = new HashMap<String, TextEditor>();
+    private HashMap<String, TextEditor> sourceEditors = new HashMap<String, TextEditor>();
 
     /**
      * Creates editor
@@ -57,19 +57,20 @@ public class I18nXmlEditor extends FormEditor implements IResourceChangeListener
     }
 
     /**
-     * Create a text editor page which associated with a input
+     * Create a text editor associated with a input and add it to multi-page
+     * editor
      * 
      * @param input
      *            The input for new text editor
      */
-    void createTextEditor(final IEditorInput input) {
+    void addSourceEditor(final IEditorInput input) {
         if (null == input)
             return;
         TextEditor editor = new TextEditor();
         try {
             int index = addPage(editor, input);
             setPageText(index, editor.getTitle());
-            textEditors.put(input.getName(), editor);
+            sourceEditors.put(input.getName(), editor);
         } catch (PartInitException e) {
             ErrorDialog.openError(getSite().getShell(), "Error creating nested text editor: " + input.getName(),
                     e.getMessage(), e.getStatus());
@@ -79,9 +80,9 @@ public class I18nXmlEditor extends FormEditor implements IResourceChangeListener
     /**
      * creates text editor pages for all i18n xml file
      */
-    void createTextEditors() {
+    void addSourceEditors() {
         // create a text editor page for the current file
-        createTextEditor(getEditorInput());
+        addSourceEditor(getEditorInput());
 
         IResource[] resources = null;
         try {
@@ -98,7 +99,8 @@ public class I18nXmlEditor extends FormEditor implements IResourceChangeListener
                          * create a text editor page for other i18n xml file
                          * according to file name pattern in the same folder
                          */
-                        createTextEditor(new FileEditorInput(file));
+                        // createTextEditor(new FileEditorInput(file));
+                        addSourceEditor(new FileEditorInput(file));
                     }
                 }
             }
@@ -179,17 +181,6 @@ public class I18nXmlEditor extends FormEditor implements IResourceChangeListener
     // int index = addPage(composite);
     // setPageText(index, "Preview");
     // }
-
-    /**
-     * Creates the pages of the multi-page editor.
-     */
-    protected void createPages() {
-        // createPage0();
-        // createPage1();
-        // createPage2();
-        createTextEditors();
-        createI18nEditor();
-    }
 
     /**
      * The <code>MultiPageEditorPart</code> implementation of this
@@ -277,11 +268,9 @@ public class I18nXmlEditor extends FormEditor implements IResourceChangeListener
     }
 
     protected void addPages() {
-        // TODO Auto-generated method stub
-        
+        addSourceEditors();
 
     }
-
     /**
      * Sets the font related data to be applied to the text in page 2.
      */
